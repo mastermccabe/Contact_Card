@@ -1,0 +1,176 @@
+<!-- Contact Card Note: Upload your work in GitHub and allow your collaborators to add/suggest new features for your work. You are going to design a contact card page. The user should be able to input contacts to the page. Using the techniques demonstrated
+in the videos, you must use jQuery to append new data to the page and make the content interactive. Remember, the content you are making is dynamic, so be sure to attach your handlers appropriately. NOTE: we recommend using $(document).on("click", ".btn")
+for this assignment as opposed to $(".btn").click() http://s3.amazonaws.com/General_V88/boomyeah/company_209/chapter_2194/handouts/chapter2194_1704_mockup.png GitHub is a social network hub for programmers. You can look at what other programmers are working
+on, check their code and make suggestions or changes. You may share projects you are working on and collaborate with other programmers for updates or additional features. Upload your work for this exercise on GitHub and ask some of your cohort mates or
+other programmers to peruse your code and suggest changes/updates. Do the same thing for your cohort mates' work. -->
+
+
+<!DOCTYPE html>
+<!--
+Create a blank table which has First Name, Last Name, Email and Contact Number as table headings. Have a form at the bottom which will be used to append items to the table. Make sure that each form field appends to its proper row/column in the table.
+-->
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Users2</title>
+  <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#user_form').submit(function(event) {
+        var form = $(this);
+        var html = '<div class="contact-card">';
+        html += '<div class="card-inner">';
+        html += '<h1>' + $('#user_firstname').val() + '</h1>';
+        html += '<h1>' + $('#user_lastname').val() + '</h1>';
+        html += '</div>';
+        html += '<div class = "card-inner hide"><p id = "wrapme">' + $('#user_desc').val() + '</p></div></div>';
+        html += '</div>';
+        $('.card-container').append(html);
+        form[0].reset();
+        $('#user_firstname').focus();
+        event.preventDefault()
+      });
+    });
+    // You must use $(document).on('click','.contact-card',function(){}); for dynamically added content
+    $(document).on('click', '.contact-card', function() {
+      var card = $(this);
+      card.find('.card-inner').toggle();
+    });
+  </script>
+
+  <style>
+    body {
+      width: 950px;
+    }
+
+    p {
+      display: inline-block;
+    }
+
+    #wrapme {
+      width: 300px;
+      word-wrap: break-word;
+    }
+
+    label {
+      display: block;
+    }
+
+    .hide {
+      display: none;
+    }
+
+    .form-group {
+      margin-bottom: 7px;
+      width: 300px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-card {
+      display: inline-block;
+      border-style: solid;
+      vertical-align: top;
+      height: auto;
+      margin: 10px;
+      width: 300px;
+      height: 200px;
+      padding: 10px;
+    }
+
+    .tablesorter {
+      width: 300px;
+      display: none;
+    }
+
+    .card-container {
+      width: 950px;
+      display: inline-block;
+    }
+  </style>
+
+
+
+</head>
+
+<body>
+
+  <table id="myTable" class="tablesorter">
+
+    <thead>
+      <tr>
+        <tbody class='card-front'>
+          <th>First Name</th>
+          <th>Last Name</th>
+        </tbody>
+        <tbody class='card-back'>
+          <!-- <th>Email</th> -->
+          <th>Description</th>
+        </tbody>
+      </tr>
+    </thead>
+    <!--
+    <div class="users-body">
+      <tr>
+        <td>John</td>
+        <td>Smith</td>
+        <td>12345678</td>
+      </tr>
+    </div>
+ -->
+
+  </table>
+
+  <h1> Add Users </h1>
+  <hr>
+
+  <form id="user_form">
+
+    <div class="form-group">
+
+      <label>First Name:</label>
+      <input required type="text" id="user_firstname" name="user_firstname" placeholder="First Name">
+
+
+      <label>Last Name:</label>
+      <input required type="text" id="user_lastname" name="user_lastname" placeholder="Last Name">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Description</label>
+      <textarea required rows="6" id="user_desc" name="user_desc" placeholder="Description"></textarea>
+
+    </div>
+
+    <div class="form-group">
+
+      <button id="submit">Submit</button>
+
+    </div>
+
+  </form>
+
+  <!-- cards below here -->
+  <div class='card-container'>
+
+    <!-- <div class="contact-card">
+      <div class="card-inner">
+        <h1> Joe <br><br> Schnoe</h1>
+      </div>
+      <div class="card-inner hide">
+        <p>im just your average guy</p>
+      </div>
+    </div> -->
+
+  </div>
+
+</body>
+
+</html>
